@@ -8,27 +8,28 @@ import (
 func GetFloatMean(data []string, columnName string) {
 	total := 0.0
 	max := 0.0
-	min := 0.0
+	min := 1.0
 
 	for i := 1; i < len(data); i += 1 {
 		number, err := strconv.ParseFloat(data[i], 64)
-		initmin, minErr := strconv.ParseFloat(data[1], 64)
-
-		if minErr != nil {
-			fmt.Println("Min Convert Error: ", minErr)
-		}
-
-		min = initmin
 
 		if err != nil {
 			fmt.Println("Conver error: ", err)
 		}
 
 		if max < number {
+			fmt.Println("@@@@@@@@@@@@@@@@@@@@@")
+			fmt.Printf("Found Bigger Data. Previous: %f, Founded: %f", max, number)
+			fmt.Println("@@@@@@@@@@@@@@@@@@@@@")
+
 			max = number
 		}
 
 		if min > number {
+			fmt.Println("#####################")
+			fmt.Printf("Found Lower Data. Previous: %f, Founded: %f", min, number)
+			fmt.Println("#####################")
+
 			min = number
 		}
 
