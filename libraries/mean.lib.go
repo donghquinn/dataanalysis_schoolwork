@@ -18,17 +18,11 @@ func GetFloatMean(data []string, columnName string) {
 		}
 
 		if max < number {
-			fmt.Println("@@@@@@@@@@@@@@@@@@@@@")
-			fmt.Printf("Found Bigger Data. Previous: %f, Founded: %f", max, number)
-			fmt.Println("@@@@@@@@@@@@@@@@@@@@@")
 
 			max = number
 		}
 
 		if min > number {
-			fmt.Println("#####################")
-			fmt.Printf("Found Lower Data. Previous: %f, Founded: %f", min, number)
-			fmt.Println("#####################")
 
 			min = number
 		}
