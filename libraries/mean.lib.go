@@ -38,17 +38,10 @@ func GetFloatMean(data []string, columnName string) {
 func GetIntMean(data []string, columnName string) int {
 	var total int = 0
 	max := 0
-	min := 0
+	min := 1
 
 	for i := 1; i < len(data); i += 1 {
 		number, err := strconv.Atoi(data[i])
-		initmin, minErr := strconv.Atoi(data[1])
-
-		if minErr != nil {
-			fmt.Println("Min Convert Error: ", minErr)
-		}
-
-		min = initmin
 
 		if err != nil {
 			fmt.Println("Conver error: ", err)
