@@ -8,7 +8,6 @@ import (
 func GetFloatMean(data []string, columnName string) {
 	total := 0.0
 	max := 0.0
-	min := 1.0
 
 	for i := 1; i < len(data); i += 1 {
 		number, err := strconv.ParseFloat(data[i], 64)
@@ -22,23 +21,17 @@ func GetFloatMean(data []string, columnName string) {
 			max = number
 		}
 
-		if min > number {
-
-			min = number
-		}
-
 		total += number
 	}
 
 	mean := total / float64(len(data))
 
-	fmt.Printf("%s Data. Mean: %f, Max: %f, Min: %f\n ", columnName, mean, max, min)
+	fmt.Printf("%s Data. Mean: %f, Max: %f\n ", columnName, mean, max)
 }
 
 func GetIntMean(data []string, columnName string) int {
 	var total int = 0
 	max := 0
-	min := 1
 
 	for i := 1; i < len(data); i += 1 {
 		number, err := strconv.Atoi(data[i])
@@ -51,16 +44,12 @@ func GetIntMean(data []string, columnName string) int {
 			max = number
 		}
 
-		if min > number {
-			min = number
-		}
-
 		total += number
 	}
 
 	mean := (total) / (len(data))
 
-	fmt.Printf("Column: %s, Mean: %d, Max: %d, Min: %d\n", columnName, mean, max, min)
+	fmt.Printf("Column: %s, Mean: %d, Max: %d\n", columnName, mean, max)
 
 	return mean
 }

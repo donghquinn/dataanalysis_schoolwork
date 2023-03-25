@@ -17,7 +17,7 @@ func RemodeledCount(data []string) (int, int, int) {
 		}
 	}
 
-	fmt.Printf("Remodeling Data. Recent: %d, Old: %d, None: %d\n", recentCount, oldCount, noneCount)
+	fmt.Printf("Remodeling Data. Total Data: %d Recent: %d, Old: %d, None: %d\n", len(data), recentCount, oldCount, noneCount)
 
 	return recentCount, oldCount, noneCount
 }
