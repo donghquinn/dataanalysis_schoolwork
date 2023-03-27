@@ -17,14 +17,14 @@ func GetMedian(data []string, dataName string) float64 {
 
 	convertedDataArray := make([]float64, totalDataNumber)
 
-	for i := 1; i < len(data); i += 1 {
+	for i := 1; i < len(convertedDataArray); i += 1 {
 		element, elementErr := strconv.ParseFloat(data[i], 64)
 
 		if elementErr != nil {
 			fmt.Println("Element Error", elementErr.Error())
 		}
 
-		convertedDataArray = append(convertedDataArray, element)
+		convertedDataArray[i] = element
 	}
 
 	sort.Float64s(convertedDataArray)
@@ -42,8 +42,8 @@ func GetMedian(data []string, dataName string) float64 {
 		first := convertedDataArray[middleNumber]
 		fmt.Println("First Median Number: ", first)
 
-		fmt.Println("Second Median Index: ", middleNumber+1)
-		second := convertedDataArray[middleNumber+1]
+		fmt.Println("Second Median Index: ", (middleNumber)+1)
+		second := convertedDataArray[(middleNumber)+1]
 		fmt.Println("Second Median Number: ", second)
 
 		median = (first + second) / 2
