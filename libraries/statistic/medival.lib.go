@@ -12,7 +12,7 @@ var (
 	medival2 string
 )
 
-func GetMedival(data []string, dataName string) {
+func GetMedival(data []string, dataName string) (string, string) {
 	totalDataNumber := len(data) - 1
 
 	fmt.Println("Total Data Number: ", totalDataNumber)
@@ -33,6 +33,8 @@ func GetMedival(data []string, dataName string) {
 
 	if totalDataNumber/2 != 0 {
 		medival1 = data[totalDataNumber/2]
+
+		return medival1, ""
 	} else {
 		fmt.Println("First Medival Index: ", int(math.Ceil(float64(totalDataNumber)/2)))
 		medival1 = data[int(math.Ceil(float64(totalDataNumber)/2))]
@@ -42,5 +44,7 @@ func GetMedival(data []string, dataName string) {
 
 		medival2 = data[int(math.Ceil(float64(totalDataNumber)/2))+1]
 		fmt.Println("Second Medival Number: ", medival2)
+
+		return medival1, medival2
 	}
 }
