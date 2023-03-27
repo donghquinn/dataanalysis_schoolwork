@@ -37,8 +37,16 @@ func DrawScatter(title string, yData []string, xData []string, xAxisName string,
 	}
 
 	plot.Title.Text = title
+	plot.Title.Padding = 5
+	// plot.Title.TextStyle.Font.Style = "Regular"
 	plot.X.Label.Text = xAxisName
 	plot.Y.Label.Text = yDataName
+	plot.X.Label.Padding = 5
+	plot.Y.Label.Padding = 5
+
+	plot.Title.TextStyle.Font.Size = 30
+	plot.X.Label.TextStyle.Font.Size = 20
+	plot.Y.Label.TextStyle.Font.Size = 20
 
 	scatter, scatterErr := plotter.NewScatter(valueSlice)
 
