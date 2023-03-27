@@ -408,31 +408,31 @@ func seletSecondData() {
 
 		switch whichDataSet2 {
 		case "crim":
-			usingDataSet1 = crime
+			usingDataSet2 = crime
 		case "zn":
-			usingDataSet1 = zn
+			usingDataSet2 = zn
 		case "indus":
-			usingDataSet1 = indus
+			usingDataSet2 = indus
 		case "chas":
-			usingDataSet1 = chas
+			usingDataSet2 = chas
 		case "nox":
-			usingDataSet1 = nox
+			usingDataSet2 = nox
 		case "rm":
-			usingDataSet1 = rm
+			usingDataSet2 = rm
 		case "age":
-			usingDataSet1 = age
+			usingDataSet2 = age
 		case "dist":
-			usingDataSet1 = distance
+			usingDataSet2 = distance
 		case "rad":
-			usingDataSet1 = radial
+			usingDataSet2 = radial
 		case "tax":
-			usingDataSet1 = bostonTax
+			usingDataSet2 = bostonTax
 		case "ptratio":
-			usingDataSet1 = ptratio
+			usingDataSet2 = ptratio
 		case "lstat":
-			usingDataSet1 = lstat
+			usingDataSet2 = lstat
 		case "medv":
-			usingDataSet1 = medv
+			usingDataSet2 = medv
 		}
 	}
 	fmt.Println("BostonHousing Selected DataSet: ", whichDataSet2)

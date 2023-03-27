@@ -17,8 +17,8 @@ func DrawScatter(title string, yData []string, xData []string, xAxisName string,
 	valueSlice := make(plotter.XYs, len(xData))
 
 	for i := 1; i < len(xData); i += 1 {
-		xDataValue, yDataErr := strconv.ParseFloat(xData[i], 64)
-		yDataValue, xDataErr := strconv.ParseFloat(yData[i], 64)
+		yDataValue, yDataErr := strconv.ParseFloat(yData[i], 64)
+		xDataValue, xDataErr := strconv.ParseFloat(xData[i], 64)
 
 		if yDataErr != nil {
 			fmt.Println("Failed To Parse Y Data Element into Float64", yDataErr)
