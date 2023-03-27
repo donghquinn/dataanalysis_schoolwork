@@ -10,7 +10,7 @@ import (
 )
 
 func DrawHistogram(title string, data []string, xAxisName string, yDataName string, fileName string) error {
-	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s ", title, xAxisName, yDataName, fileName)
+	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s\n", title, xAxisName, yDataName, fileName)
 
 	plot := plot.New()
 

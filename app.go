@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/donghquinn/xlsx/libraries"
 	drawGraph "github.com/donghquinn/xlsx/libraries/graph"
@@ -42,6 +43,7 @@ var (
 	yData           string
 	graphTitle      string
 	fileName        string
+	remodelReturn   []string
 )
 
 func main() {
@@ -65,7 +67,14 @@ func main() {
 	libraries.GetIntMean(kitchen, "KITCHEN")
 	libraries.GetIntMean(firePlace, "FIREPLACE")
 
-	libraries.RemodeledCount(remodel)
+	recentCount, oldCount, noneCount := libraries.RemodeledCount(remodel)
+
+	remodelReturn = append(remodelReturn, strconv.Itoa(recentCount), strconv.Itoa(oldCount), strconv.Itoa(noneCount))
+	// remodelReturn = make(map[string]int)
+
+	// remodelReturn["recent"] = recentCount
+	// remodelReturn["old"] = oldCount
+	// remodelReturn["noneCount"] = noneCount
 
 	callGraph()
 }
@@ -138,13 +147,18 @@ func callHistogram() {
 		panic(fileNameErr.Error())
 	}
 
-	histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet1, xData, yData, fileName)
+	if whichDataSet1 == "remodel" {
+		drawGraph.DrawHistogram(graphTitle, remodelReturn, xData, yData, fileName)
+	} else {
+		histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet1, xData, yData, fileName)
 
-	if histogramErr != nil {
-		fmt.Println("HistoGram Error", histogramErr)
-		bufio.NewReader(os.Stdin)
-		panic(histogramErr.Error())
+		if histogramErr != nil {
+			fmt.Println("HistoGram Error", histogramErr)
+			bufio.NewReader(os.Stdin)
+			panic(histogramErr.Error())
+		}
 	}
+
 }
 
 func callScatter() {
