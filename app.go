@@ -83,7 +83,7 @@ func callGraph() {
 			fmt.Println("사용할 y축 그래프 데이터를 알려주세요")
 			fmt.Scanln(&yData)
 
-			drawGraph.DrawHistogram("Data", totalValue, "Total Value", "Y")
+			drawGraph.DrawHistogram(graphTitle, totalValue, xData, yData)
 		}
 	}
 
