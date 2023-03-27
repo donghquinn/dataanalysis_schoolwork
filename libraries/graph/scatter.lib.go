@@ -9,23 +9,31 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
-func DrawScatter(title string, data []string, xAxisName string, yDataName string, fileName string) error {
+func DrawScatter(title string, yData []string, xData []string, xAxisName string, yDataName string, fileName string) error {
 	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s ", title, xAxisName, yDataName, fileName)
 
 	plot := plot.New()
 
-	valueSlice := make(plotter.XYs, len(data))
+	valueSlice := make(plotter.XYs, len(xData))
 
-	for i := 1; i < len(data); i += 1 {
-		dataValue, err := strconv.ParseFloat(data[i], 64)
+	for i := 1; i < len(xData); i += 1 {
+		xDataValue, yDataErr := strconv.ParseFloat(xData[i], 64)
+		yDataValue, xDataErr := strconv.ParseFloat(yData[i], 64)
 
-		if err != nil {
-			fmt.Println("Failed To Parse Data Element into Float64", err)
+		if yDataErr != nil {
+			fmt.Println("Failed To Parse Y Data Element into Float64", yDataErr)
 
-			return err
+			return yDataErr
 		}
 
-		valueSlice[i].X = dataValue
+		if xDataErr != nil {
+			fmt.Println("Failed To Parse X Data Elememnt into Float 64", xDataErr)
+
+			return xDataErr
+		}
+
+		valueSlice[i].X = xDataValue
+		valueSlice[i].Y = yDataValue
 	}
 
 	plot.Title.Text = title

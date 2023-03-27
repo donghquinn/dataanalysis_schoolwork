@@ -37,8 +37,10 @@ var (
 
 	wantToDrawGraph string
 	graph           string
-	whichDataSet    string
-	usingDataSet    []string
+	whichDataSet1   string
+	whichDataSet2   string
+	usingDataSet1   []string
+	usingDataSet2   []string
 	xData           string
 	yData           string
 	graphTitle      string
@@ -108,43 +110,7 @@ func callHistogram() {
 
 	fmt.Println("제목: ", graphTitle)
 
-	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-	_, selectDataSetErr := fmt.Scanln(&whichDataSet)
-
-	if selectDataSetErr != nil {
-		fmt.Println("Select DataSet Input Error", selectDataSetErr)
-		bufio.NewReader(os.Stdin)
-		panic(selectDataSetErr.Error())
-	}
-
-	switch whichDataSet {
-	case "totalValue":
-		usingDataSet = totalValue
-	case "tax":
-		usingDataSet = tax
-	case "lotSqrt":
-		usingDataSet = lotSqft
-	case "yrBuilt":
-		usingDataSet = yrBuilt
-	case "grossArea":
-		usingDataSet = grossArea
-	case "livingArea":
-		usingDataSet = livingArea
-	case "floors":
-		usingDataSet = floors
-	case "fullBath":
-		usingDataSet = fullBath
-	case "halfBath":
-		usingDataSet = halfBath
-	case "kitchen":
-		usingDataSet = kitchen
-	case "firePlace":
-		usingDataSet = firePlace
-	case "remodel":
-		usingDataSet = remodel
-	}
-
-	fmt.Println("Selected DataSet: ", whichDataSet)
+	seletFirstData()
 
 	fmt.Println("사용할 x축의 이름을 알려주세요.")
 	_, xAxisErr := fmt.Scan(&xData)
@@ -173,7 +139,7 @@ func callHistogram() {
 		panic(fileNameErr.Error())
 	}
 
-	histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData, fileName)
+	histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet1, xData, yData, fileName)
 
 	if histogramErr != nil {
 		fmt.Println("HistoGram Error", histogramErr)
@@ -194,42 +160,11 @@ func callScatter() {
 
 	fmt.Println("제목: ", graphTitle)
 
-	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-	_, selectDataSetErr := fmt.Scanln(&whichDataSet)
+	fmt.Println("X 축 데이터를 선택해 주세요")
+	seletFirstData()
 
-	if selectDataSetErr != nil {
-		fmt.Println("Select DataSet Input Error", selectDataSetErr)
-		bufio.NewReader(os.Stdin)
-		panic(selectDataSetErr.Error())
-	}
-
-	switch whichDataSet {
-	case "totalValue":
-		usingDataSet = totalValue
-	case "tax":
-		usingDataSet = tax
-	case "lotSqrt":
-		usingDataSet = lotSqft
-	case "yrBuilt":
-		usingDataSet = yrBuilt
-	case "grossArea":
-		usingDataSet = grossArea
-	case "livingArea":
-		usingDataSet = livingArea
-	case "floors":
-		usingDataSet = floors
-	case "fullBath":
-		usingDataSet = fullBath
-	case "halfBath":
-		usingDataSet = halfBath
-	case "kitchen":
-		usingDataSet = kitchen
-	case "firePlace":
-		usingDataSet = firePlace
-	case "remodel":
-		usingDataSet = remodel
-	}
-	fmt.Println("Selected DataSet: ", whichDataSet)
+	fmt.Println("Y 축 데이터를 선택해 주세요")
+	seletSecondData()
 
 	fmt.Println("사용할 x축의 이름을 알려주세요.")
 	_, xAxisErr := fmt.Scan(&xData)
@@ -258,11 +193,89 @@ func callScatter() {
 		panic(fileNameErr.Error())
 	}
 
-	histogramErr := drawGraph.DrawScatter(graphTitle, usingDataSet, xData, yData, fileName)
+	histogramErr := drawGraph.DrawScatter(graphTitle, usingDataSet1, usingDataSet2, xData, yData, fileName)
 
 	if histogramErr != nil {
 		fmt.Println("Scatter Error", histogramErr)
 		bufio.NewReader(os.Stdin)
 		panic(histogramErr.Error())
 	}
+}
+
+func seletFirstData() {
+	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+	_, selectDataSetErr := fmt.Scanln(&whichDataSet1)
+
+	if selectDataSetErr != nil {
+		fmt.Println("Select DataSet Input Error", selectDataSetErr)
+		bufio.NewReader(os.Stdin)
+		panic(selectDataSetErr.Error())
+	}
+
+	switch whichDataSet1 {
+	case "totalValue":
+		usingDataSet1 = totalValue
+	case "tax":
+		usingDataSet1 = tax
+	case "lotSqrt":
+		usingDataSet1 = lotSqft
+	case "yrBuilt":
+		usingDataSet1 = yrBuilt
+	case "grossArea":
+		usingDataSet1 = grossArea
+	case "livingArea":
+		usingDataSet1 = livingArea
+	case "floors":
+		usingDataSet1 = floors
+	case "fullBath":
+		usingDataSet1 = fullBath
+	case "halfBath":
+		usingDataSet1 = halfBath
+	case "kitchen":
+		usingDataSet1 = kitchen
+	case "firePlace":
+		usingDataSet1 = firePlace
+	case "remodel":
+		usingDataSet1 = remodel
+	}
+	fmt.Println("Selected DataSet: ", whichDataSet1)
+}
+
+func seletSecondData() {
+	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+	_, selectDataSetErr := fmt.Scanln(&whichDataSet2)
+
+	if selectDataSetErr != nil {
+		fmt.Println("Select DataSet Input Error", selectDataSetErr)
+		bufio.NewReader(os.Stdin)
+		panic(selectDataSetErr.Error())
+	}
+
+	switch whichDataSet2 {
+	case "totalValue":
+		usingDataSet2 = totalValue
+	case "tax":
+		usingDataSet2 = tax
+	case "lotSqrt":
+		usingDataSet2 = lotSqft
+	case "yrBuilt":
+		usingDataSet2 = yrBuilt
+	case "grossArea":
+		usingDataSet2 = grossArea
+	case "livingArea":
+		usingDataSet2 = livingArea
+	case "floors":
+		usingDataSet2 = floors
+	case "fullBath":
+		usingDataSet2 = fullBath
+	case "halfBath":
+		usingDataSet2 = halfBath
+	case "kitchen":
+		usingDataSet2 = kitchen
+	case "firePlace":
+		usingDataSet2 = firePlace
+	case "remodel":
+		usingDataSet2 = remodel
+	}
+	fmt.Println("Selected DataSet: ", whichDataSet2)
 }
