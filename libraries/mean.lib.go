@@ -13,11 +13,10 @@ func GetFloatMean(data []string, columnName string) {
 		number, err := strconv.ParseFloat(data[i], 64)
 
 		if err != nil {
-			fmt.Println("Conver error: ", err)
+			fmt.Println("Conver error: ", err.Error())
 		}
 
 		if max < number {
-
 			max = number
 		}
 
@@ -37,7 +36,7 @@ func GetIntMean(data []string, columnName string) int {
 		number, err := strconv.Atoi(data[i])
 
 		if err != nil {
-			fmt.Println("Conver error: ", err)
+			fmt.Println("Conver error: ", err.Error())
 		}
 
 		if max < number {

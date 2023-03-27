@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 
+	bostonhousing "github.com/donghquinn/xlsx/bostonHousing"
 	"github.com/donghquinn/xlsx/libraries"
 	drawGraph "github.com/donghquinn/xlsx/libraries/graph"
 	westroxbury "github.com/donghquinn/xlsx/westRoxbury"
@@ -60,34 +61,7 @@ func main() {
 
 	fileName := decideDataSet(fileNameInput)
 
-	// 배열 첫번째는 칼럼 이름
-	totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel = westroxbury.OpenFile(fileName)
-
-	libraries.GetFloatMean(totalValue, "TOTAL VALUE")
-
-	libraries.GetIntMean(tax, "TAX")
-	libraries.GetIntMean(lotSqft, "LOT SQFT")
-	libraries.GetIntMean(yrBuilt, "YR BUILT")
-	libraries.GetIntMean(grossArea, "GROSS AREA")
-	libraries.GetIntMean(livingArea, "LIVING AREA")
-	libraries.GetFloatMean(floors, "Floors")
-	libraries.GetIntMean(rooms, "ROOMS")
-	libraries.GetIntMean(bedRooms, "BEDROOMS")
-	libraries.GetIntMean(fullBath, "FULL BATH")
-	libraries.GetIntMean(halfBath, "HALF BATh")
-	libraries.GetIntMean(kitchen, "KITCHEN")
-	libraries.GetIntMean(firePlace, "FIREPLACE")
-
-	recentCount, oldCount, noneCount := libraries.RemodeledCount(remodel)
-
-	remodelReturn = append(remodelReturn, strconv.Itoa(recentCount), strconv.Itoa(oldCount), strconv.Itoa(noneCount))
-	// remodelReturn = make(map[string]int)
-
-	// remodelReturn["recent"] = recentCount
-	// remodelReturn["old"] = oldCount
-	// remodelReturn["noneCount"] = noneCount
-
-	callGraph()
+	callOpenFile(fileName)
 }
 
 func decideDataSet(fileName string) string {
@@ -96,6 +70,57 @@ func decideDataSet(fileName string) string {
 	fmt.Printf("Founded %s", founded)
 
 	return founded
+}
+
+func callOpenFile(fileName string) {
+	switch fileName {
+	case "westRoxbury":
+		// 배열 첫번째는 칼럼 이름
+		totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel = westroxbury.OpenFile(fileName)
+
+		libraries.GetFloatMean(totalValue, "TOTAL VALUE")
+
+		libraries.GetIntMean(tax, "TAX")
+		libraries.GetIntMean(lotSqft, "LOT SQFT")
+		libraries.GetIntMean(yrBuilt, "YR BUILT")
+		libraries.GetIntMean(grossArea, "GROSS AREA")
+		libraries.GetIntMean(livingArea, "LIVING AREA")
+		libraries.GetFloatMean(floors, "Floors")
+		libraries.GetIntMean(rooms, "ROOMS")
+		libraries.GetIntMean(bedRooms, "BEDROOMS")
+		libraries.GetIntMean(fullBath, "FULL BATH")
+		libraries.GetIntMean(halfBath, "HALF BATh")
+		libraries.GetIntMean(kitchen, "KITCHEN")
+		libraries.GetIntMean(firePlace, "FIREPLACE")
+
+		recentCount, oldCount, noneCount := libraries.RemodeledCount(remodel)
+
+		remodelReturn = append(remodelReturn, strconv.Itoa(recentCount), strconv.Itoa(oldCount), strconv.Itoa(noneCount))
+		// remodelReturn = make(map[string]int)
+
+		// remodelReturn["recent"] = recentCount
+		// remodelReturn["old"] = oldCount
+		// remodelReturn["noneCount"] = noneCount
+
+		callGraph()
+
+	case "bostonHousing":
+		crime, zn, indus, chas, nox, rm, age, distance, radial, tax, ptratio, lstat, medv := bostonhousing.OpenFile(fileName)
+		libraries.GetFloatMean(crime, "CRIM")
+		libraries.GetIntMean(zn, "ZN")
+		libraries.GetFloatMean(indus, "INDUS")
+		libraries.ChasCount(chas)
+		libraries.GetFloatMean(nox, "NOX")
+		libraries.GetFloatMean(rm, "RM")
+		libraries.GetFloatMean(age, "AGE")
+		libraries.GetFloatMean(distance, "DIS")
+		libraries.GetIntMean(radial, "RAD")
+		libraries.GetIntMean(tax, "TAX")
+		libraries.GetFloatMean(ptratio, "PTRATIO")
+		libraries.GetFloatMean(lstat, "LSTAT")
+		libraries.GetFloatMean(medv, "MEDV")
+		// libraries.G
+	}
 }
 
 func callGraph() {
