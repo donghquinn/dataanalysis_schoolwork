@@ -12,7 +12,7 @@ var (
 	medival2 string
 )
 
-func GetMedival(data []string, dataName string) (string, string) {
+func GetMedian(data []string, dataName string) (string, string) {
 	totalDataNumber := len(data) - 1
 
 	fmt.Println("Total Data Number: ", totalDataNumber)
