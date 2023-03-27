@@ -19,7 +19,7 @@ func GetMedival(data []string, dataName string) (string, string) {
 
 	convertedDataArray := make([]float64, totalDataNumber)
 
-	for i := range data {
+	for i := 1; i < len(data); i += 1 {
 		element, elementErr := strconv.ParseFloat(data[i], 64)
 
 		if elementErr != nil {
@@ -27,9 +27,10 @@ func GetMedival(data []string, dataName string) (string, string) {
 		}
 
 		convertedDataArray = append(convertedDataArray, element)
-
-		sort.Float64s(convertedDataArray)
 	}
+
+	sort.Float64s(convertedDataArray)
+	// fmt.Printf("Converted: %v", convertedDataArray)
 
 	if totalDataNumber/2 != 0 {
 		medival1 = data[totalDataNumber/2]

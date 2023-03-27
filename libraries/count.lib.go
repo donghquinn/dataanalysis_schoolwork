@@ -26,7 +26,7 @@ func ChasCount(data []string) (int, int) {
 	countZero := 0
 	countOne := 0
 
-	for i := 0; i < len(data); i += 1 {
+	for i := 1; i < len(data); i += 1 {
 		if data[i] == "0" {
 			countZero += 1
 		} else if data[i] == "1" {
@@ -36,7 +36,7 @@ func ChasCount(data []string) (int, int) {
 		}
 	}
 
-	fmt.Printf("CHAS Data - Total Data: %d '1': %d, '0': %d\n", len(data), countOne, countZero)
+	fmt.Printf("CHAS Data - Total Data: %d '1': %d, '0': %d\n", len(data)-1, countOne, countZero)
 
 	return countOne, countZero
 }

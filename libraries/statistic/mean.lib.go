@@ -44,7 +44,7 @@ func GetIntMean(data []string, columnName string) {
 		number, err := strconv.Atoi(data[i])
 
 		if err != nil {
-			fmt.Println("Conver error: ", err.Error())
+			fmt.Println("String to Int Convert error: ", err.Error())
 		}
 
 		if max < number {
