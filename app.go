@@ -14,6 +14,9 @@ type graphStyles struct {
 	scatter   string
 }
 
+// type dataSets struct {
+// }
+
 var (
 	totalValue []string
 	tax        []string
@@ -32,6 +35,7 @@ var (
 
 	wantToDrawGraph string
 	graph           string
+	whichDataSet    string
 	xData           string
 	yData           string
 	graphTitle      string
@@ -76,6 +80,9 @@ func callGraph() {
 		if graph == graphTypes.histogram {
 			fmt.Println("생성할 그래프의 제목을 알려주세요")
 			fmt.Scanln(&graphTitle)
+
+			fmt.Println("사용할 데이터 셋을 알려주세요")
+			fmt.Scanln(&whichDataSet)
 
 			fmt.Println("사용할 x축 그래프 데이터를 알려주세요.")
 			fmt.Scanln(&xData)
