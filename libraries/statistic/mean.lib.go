@@ -2,6 +2,7 @@ package statistic
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -25,12 +26,12 @@ func GetFloatMean(data []string, columnName string) {
 
 	mean := total / float64(len(data))
 
-	medival1, medival2 := GetMedian(data, columnName)
+	median1, median2 := GetMedian(data, columnName)
 
-	if medival2 == "" {
-		fmt.Printf("Column: %s, Average: %f, Max: %f, Medival: %s \n", columnName, mean, max, medival1)
+	if math.IsNaN(median2) {
+		fmt.Printf("Column: %s, Average: %f, Max: %f, Medival: %f \n", columnName, mean, max, median1)
 	} else {
-		fmt.Printf("Column: %s, Average: %f, Max: %f, Medival1: %s, Medival2: %s \n", columnName, mean, max, medival1, medival2)
+		fmt.Printf("Column: %s, Average: %f, Max: %f, Medival1: %f, Medival2: %f \n", columnName, mean, max, median1, median2)
 	}
 
 	// fmt.Printf("%s Data. Average: %f, Max: %f\n ", columnName, mean, max)
@@ -57,9 +58,9 @@ func GetIntMean(data []string, columnName string) {
 	mean := (total) / (len(data))
 	median1, median2 := GetMedian(data, columnName)
 
-	if median2 == "" {
-		fmt.Printf("Column: %s, Average: %d, Max: %d, Median: %s \n", columnName, mean, max, median1)
+	if math.IsNaN(median2) {
+		fmt.Printf("Column: %s, Average: %d, Max: %d, Median: %f \n", columnName, mean, max, median1)
 	} else {
-		fmt.Printf("Column: %s, Average: %d, Max: %d, Median1: %s, Median2: %s \n", columnName, mean, max, median1, median2)
+		fmt.Printf("Column: %s, Average: %d, Max: %d, Median1: %f, Median2: %f\n", columnName, mean, max, median1, median2)
 	}
 }

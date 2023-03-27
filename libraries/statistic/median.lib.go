@@ -8,11 +8,11 @@ import (
 )
 
 var (
-	median1 string
-	median2 string
+	median1 float64
+	median2 float64
 )
 
-func GetMedian(data []string, dataName string) (string, string) {
+func GetMedian(data []string, dataName string) (float64, float64) {
 	totalDataNumber := len(data) - 1
 
 	fmt.Println("Total Data Number: ", totalDataNumber)
@@ -30,21 +30,20 @@ func GetMedian(data []string, dataName string) (string, string) {
 	}
 
 	sort.Float64s(convertedDataArray)
-	// fmt.Printf("Converted: %v", convertedDataArray)
 
 	if totalDataNumber/2 != 0 {
 		fmt.Println("Median Index: ", int(math.Ceil(float64(totalDataNumber)/2)))
 
-		median1 = data[int(math.Ceil(float64(totalDataNumber)/2))]
+		median1 = convertedDataArray[int(math.Ceil(float64(totalDataNumber)/2))]
 
-		return median1, ""
+		return median1, math.NaN()
 	} else {
 		fmt.Println("First Median Index: ", totalDataNumber/2)
-		median1 = data[totalDataNumber/2]
+		median1 = convertedDataArray[totalDataNumber/2]
 		fmt.Println("First Median Number: ", median1)
 
 		fmt.Println("Second Median Index: ", totalDataNumber/2+1)
-		median2 = data[totalDataNumber/2+1]
+		median2 = convertedDataArray[totalDataNumber/2+1]
 		fmt.Println("Second Median Number: ", median2)
 
 		return median1, median2
