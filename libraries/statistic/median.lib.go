@@ -33,17 +33,18 @@ func GetMedian(data []string, dataName string) (string, string) {
 	// fmt.Printf("Converted: %v", convertedDataArray)
 
 	if totalDataNumber/2 != 0 {
-		medival1 = data[totalDataNumber/2]
+		fmt.Println("First Median Index: ", int(math.Ceil(float64(totalDataNumber)/2)))
+
+		medival1 = data[int(math.Ceil(float64(totalDataNumber)/2))]
 
 		return medival1, ""
 	} else {
-		fmt.Println("First Medival Index: ", int(math.Ceil(float64(totalDataNumber)/2)))
-		medival1 = data[int(math.Ceil(float64(totalDataNumber)/2))]
-		fmt.Println("First Medival Number: ", medival1)
+		fmt.Println("First Median Index: ", totalDataNumber/2)
+		medival1 = data[totalDataNumber/2]
+		fmt.Println("First Median Number: ", medival1)
 
-		fmt.Println("Second Medival Index: ", int(math.Ceil(float64(totalDataNumber)/2))+1)
-
-		medival2 = data[int(math.Ceil(float64(totalDataNumber)/2))+1]
+		fmt.Println("Second Medival Index: ", totalDataNumber/2+1)
+		medival2 = data[totalDataNumber/2+1]
 		fmt.Println("Second Medival Number: ", medival2)
 
 		return medival1, medival2
