@@ -75,7 +75,7 @@ func callGraph() {
 	fmt.Println("그래프를 그리길 원하십니까? y / n")
 	fmt.Scanln(&wantToDrawGraph)
 
-	graphTypes := graphStyles{histogram: "히스토그램", barChart: "바 차트", scatter: "산포도"}
+	graphTypes := graphStyles{histogram: "히스토그램", barChart: "막대그래프", scatter: "산포도"}
 
 	if wantToDrawGraph == "y" {
 		fmt.Println("어떤 종류의 그래프를 원하십니까: ", graphTypes)
