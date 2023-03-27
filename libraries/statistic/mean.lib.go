@@ -57,7 +57,7 @@ func GetIntMean(data []string, columnName string) {
 	mean := (total) / (len(data))
 	median1, median2 := GetMedian(data, columnName)
 
-	if medival2 == "" {
+	if median2 == "" {
 		fmt.Printf("Column: %s, Average: %d, Max: %d, Median: %s \n", columnName, mean, max, median1)
 	} else {
 		fmt.Printf("Column: %s, Average: %d, Max: %d, Median1: %s, Median2: %s \n", columnName, mean, max, median1, median2)
