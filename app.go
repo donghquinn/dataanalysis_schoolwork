@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 
 	"github.com/donghquinn/xlsx/libraries"
 	drawGraph "github.com/donghquinn/xlsx/libraries/graph"
@@ -36,6 +38,7 @@ var (
 	wantToDrawGraph string
 	graph           string
 	whichDataSet    string
+	usingDataSet    []string
 	xData           string
 	yData           string
 	graphTitle      string
@@ -81,8 +84,35 @@ func callGraph() {
 			fmt.Println("생성할 그래프의 제목을 알려주세요")
 			fmt.Scanln(&graphTitle)
 
-			fmt.Println("사용할 데이터 셋을 알려주세요")
+			fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
 			fmt.Scanln(&whichDataSet)
+
+			switch whichDataSet {
+			case "totalValue":
+				usingDataSet = totalValue
+			case "tax":
+				usingDataSet = tax
+			case "lotSqrt":
+				usingDataSet = lotSqft
+			case "yrBuilt":
+				usingDataSet = yrBuilt
+			case "grossArea":
+				usingDataSet = grossArea
+			case "livingArea":
+				usingDataSet = livingArea
+			case "floors":
+				usingDataSet = floors
+			case "fullBath":
+				usingDataSet = fullBath
+			case "halfBath":
+				usingDataSet = halfBath
+			case "kitchen":
+				usingDataSet = kitchen
+			case "firePlace":
+				usingDataSet = firePlace
+			case "remodel":
+				usingDataSet = remodel
+			}
 
 			fmt.Println("사용할 x축 그래프 데이터를 알려주세요.")
 			fmt.Scanln(&xData)
@@ -90,7 +120,9 @@ func callGraph() {
 			fmt.Println("사용할 y축 그래프 데이터를 알려주세요")
 			fmt.Scanln(&yData)
 
-			drawGraph.DrawHistogram(graphTitle, totalValue, xData, yData)
+			drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData)
+
+			bufio.NewReader(os.Stdin)
 		}
 	}
 
