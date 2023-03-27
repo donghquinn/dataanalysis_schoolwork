@@ -72,6 +72,7 @@ func main() {
 }
 
 func callGraph() {
+	fmt.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 	fmt.Println("그래프를 그리길 원하십니까? y / n")
 	fmt.Scanln(&wantToDrawGraph)
 
