@@ -49,7 +49,7 @@ func DrawHistogram(title string, data []string, xAxisName string, yDataName stri
 
 	plot.Add(histogram)
 
-	plotErr := plot.Save(40*vg.Centimeter, 40*vg.Centimeter, fileName+"png")
+	plotErr := plot.Save(40*vg.Centimeter, 40*vg.Centimeter, fileName+".png")
 
 	if plotErr != nil {
 		fmt.Println("Saving New Histogram Failed", plotErr)
