@@ -88,6 +88,7 @@ func callGraph() {
 
 			if titleErr != nil {
 				fmt.Println("Invalid Input", titleErr)
+				bufio.NewReader(os.Stdin)
 				panic(titleErr.Error())
 			}
 
@@ -98,6 +99,7 @@ func callGraph() {
 
 			if selectDataSetErr != nil {
 				fmt.Println("Select DataSet Input Error", selectDataSetErr)
+				bufio.NewReader(os.Stdin)
 				panic(selectDataSetErr.Error())
 			}
 
@@ -141,7 +143,7 @@ func callGraph() {
 			_, yAxisErr := fmt.Scan(&yData)
 
 			if yAxisErr != nil {
-				fmt.Println("y Axis Data Failed", yAxisErr)
+				fmt.Println("y Data Failed", yAxisErr)
 				bufio.NewReader(os.Stdin)
 				panic(yAxisErr.Error())
 			}

@@ -9,7 +9,8 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
-func DrawHistogram(title string, data []string, xColumnName string, yColumnName string, fileName string) error {
+func DrawHistogram(title string, data []string, xAxisName string, yDataName string, fileName string) error {
+	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s ", title, xAxisName, yDataName, fileName)
 	plot := plot.New()
 
 	valueSlice := make(plotter.Values, len(data))
@@ -27,8 +28,8 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 	}
 
 	plot.Title.Text = title
-	plot.X.Label.Text = xColumnName
-	plot.Y.Label.Text = yColumnName
+	plot.X.Label.Text = xAxisName
+	plot.Y.Label.Text = yDataName
 
 	histogram, histoErr := plotter.NewHist(valueSlice, 10)
 
