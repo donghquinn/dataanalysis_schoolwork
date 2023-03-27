@@ -9,6 +9,7 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
+// TODO Remodel과 같이 유형별 카운트 대응
 func DrawHistogram(title string, data []string, xAxisName string, yDataName string, fileName string) error {
 	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s\n", title, xAxisName, yDataName, fileName)
 
