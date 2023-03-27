@@ -87,6 +87,6 @@ func generateDataFrame(rows *excelize.Rows) {
 	defer rows.Close()
 
 	fmt.Println("@@@@@@@@@@@@@@@@@@@@@@@@")
-	fmt.Println("West RoxBury Data Loaded")
+	fmt.Println("Boston Housing Data Loaded")
 	fmt.Println("@@@@@@@@@@@@@@@@@@@@@@@@")
 }

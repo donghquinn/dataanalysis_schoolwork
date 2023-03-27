@@ -23,7 +23,7 @@ var (
 	fileNameInput string
 
 	totalValue []string
-	tax        []string
+	westTax    []string
 	lotSqft    []string
 	yrBuilt    []string
 	grossArea  []string
@@ -36,6 +36,20 @@ var (
 	kitchen    []string
 	firePlace  []string
 	remodel    []string
+
+	crime     []string
+	zn        []string
+	indus     []string
+	chas      []string
+	nox       []string
+	rm        []string
+	age       []string
+	distance  []string
+	radial    []string
+	bostonTax []string
+	ptratio   []string
+	lstat     []string
+	medv      []string
 
 	wantToDrawGraph string
 	graph           string
@@ -59,9 +73,9 @@ func main() {
 	fmt.Printf("이 중 사용하실 데이터를 알려주세요: %s, %s\n", "westRoxbury", "bostonHousing")
 	fmt.Scanln(&fileNameInput)
 
-	fileName := decideDataSet(fileNameInput)
+	fileDirectory := decideDataSet(fileNameInput)
 
-	callOpenFile(fileName)
+	callOpenFile(fileDirectory)
 }
 
 func decideDataSet(fileName string) string {
@@ -72,15 +86,15 @@ func decideDataSet(fileName string) string {
 	return founded
 }
 
-func callOpenFile(fileName string) {
-	switch fileName {
+func callOpenFile(fileDirectory string) {
+	switch fileNameInput {
 	case "westRoxbury":
 		// 배열 첫번째는 칼럼 이름
-		totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel = westroxbury.OpenFile(fileName)
+		totalValue, westTax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel = westroxbury.OpenFile(fileDirectory)
 
 		libraries.GetFloatMean(totalValue, "TOTAL VALUE")
 
-		libraries.GetIntMean(tax, "TAX")
+		libraries.GetIntMean(westTax, "TAX")
 		libraries.GetIntMean(lotSqft, "LOT SQFT")
 		libraries.GetIntMean(yrBuilt, "YR BUILT")
 		libraries.GetIntMean(grossArea, "GROSS AREA")
@@ -105,7 +119,8 @@ func callOpenFile(fileName string) {
 		callGraph()
 
 	case "bostonHousing":
-		crime, zn, indus, chas, nox, rm, age, distance, radial, tax, ptratio, lstat, medv := bostonhousing.OpenFile(fileName)
+		crime, zn, indus, chas, nox, rm, age, distance, radial, bostonTax, ptratio, lstat, medv = bostonhousing.OpenFile(fileDirectory)
+
 		libraries.GetFloatMean(crime, "CRIM")
 		libraries.GetIntMean(zn, "ZN")
 		libraries.GetFloatMean(indus, "INDUS")
@@ -115,7 +130,7 @@ func callOpenFile(fileName string) {
 		libraries.GetFloatMean(age, "AGE")
 		libraries.GetFloatMean(distance, "DIS")
 		libraries.GetIntMean(radial, "RAD")
-		libraries.GetIntMean(tax, "TAX")
+		libraries.GetIntMean(bostonTax, "TAX")
 		libraries.GetFloatMean(ptratio, "PTRATIO")
 		libraries.GetFloatMean(lstat, "LSTAT")
 		libraries.GetFloatMean(medv, "MEDV")
@@ -273,7 +288,7 @@ func seletFirstData() {
 	case "totalValue":
 		usingDataSet1 = totalValue
 	case "tax":
-		usingDataSet1 = tax
+		usingDataSet1 = westTax
 	case "lotSqrt":
 		usingDataSet1 = lotSqft
 	case "yrBuilt":
@@ -312,7 +327,7 @@ func seletSecondData() {
 	case "totalValue":
 		usingDataSet2 = totalValue
 	case "tax":
-		usingDataSet2 = tax
+		usingDataSet2 = westTax
 	case "lotSqrt":
 		usingDataSet2 = lotSqft
 	case "yrBuilt":
