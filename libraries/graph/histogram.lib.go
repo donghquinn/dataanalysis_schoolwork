@@ -9,7 +9,7 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
-func DrawHistogram(title string, data []string, xColumnName string, yColumnName string) {
+func DrawHistogram(title string, data []string, xColumnName string, yColumnName string) error {
 	plot := plot.New()
 
 	valueSlice := make(plotter.Values, len(data))
@@ -19,6 +19,8 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 
 		if err != nil {
 			fmt.Println("Failed To Parse Data Element into Float64", err)
+
+			return err
 		}
 
 		valueSlice[i] = dataValue
@@ -32,6 +34,8 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 
 	if histoErr != nil {
 		fmt.Println("Creating New Histogram Error", histoErr)
+
+		return histoErr
 	}
 
 	plot.Add(histogram)
@@ -40,8 +44,11 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 
 	if plotErr != nil {
 		fmt.Println("Saving New Histogram Failed", plotErr)
-		panic(plotErr.Error())
+
+		return plotErr
 	}
 
 	fmt.Println("Saving New Histogram Completed")
+
+	return nil
 }

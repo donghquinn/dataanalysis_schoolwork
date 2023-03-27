@@ -82,10 +82,22 @@ func callGraph() {
 
 		if graph == graphTypes.histogram {
 			fmt.Println("생성할 그래프의 제목을 알려주세요")
-			fmt.Scanln(&graphTitle)
+			_, titleErr := fmt.Scanln(&graphTitle)
+
+			if titleErr != nil {
+				fmt.Println("Invalid Input", titleErr)
+				panic(titleErr.Error())
+			}
+
+			fmt.Println("제목: ", graphTitle)
 
 			fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-			fmt.Scanln(&whichDataSet)
+			_, selectDataSetErr := fmt.Scanln(&whichDataSet)
+
+			if selectDataSetErr != nil {
+				fmt.Println("Select DataSet Input Error", selectDataSetErr)
+				panic(selectDataSetErr.Error())
+			}
 
 			switch whichDataSet {
 			case "totalValue":
@@ -115,16 +127,35 @@ func callGraph() {
 			}
 
 			fmt.Println("사용할 x축 그래프 데이터를 알려주세요.")
-			fmt.Scanln(&xData)
+			_, xAxisErr := fmt.Scanln(&xData)
+
+			if xAxisErr != nil {
+				fmt.Println("x Axis Data Failed", xAxisErr)
+				bufio.NewReader(os.Stdin)
+				panic(xAxisErr.Error())
+			}
 
 			fmt.Println("사용할 y축 그래프 데이터를 알려주세요")
-			fmt.Scanln(&yData)
+			_, yAxisErr := fmt.Scanln(&yData)
 
-			drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData)
+			if yAxisErr != nil {
+				fmt.Println("y Axis Data Failed", yAxisErr)
+				bufio.NewReader(os.Stdin)
+				panic(yAxisErr.Error())
+			}
 
-			bufio.NewReader(os.Stdin)
+			histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData)
+
+			if histogramErr != nil {
+				fmt.Println("HistoGram Error", histogramErr)
+				bufio.NewReader(os.Stdin)
+				panic(histogramErr.Error())
+			}
+
+		} else if wantToDrawGraph == "n" {
+			fmt.Println("프로세스를 종료합니다.")
 		}
 	}
 
-	fmt.Println("Please Input two DataSets you want to draw Histogram")
+	// fmt.Println("Please Input two DataSets you want to draw Histogram")
 }
