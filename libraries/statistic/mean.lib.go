@@ -1,4 +1,4 @@
-package libraries
+package statistic
 
 import (
 	"fmt"

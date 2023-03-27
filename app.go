@@ -9,6 +9,7 @@ import (
 	bostonhousing "github.com/donghquinn/xlsx/bostonHousing"
 	"github.com/donghquinn/xlsx/libraries"
 	drawGraph "github.com/donghquinn/xlsx/libraries/graph"
+	"github.com/donghquinn/xlsx/libraries/statistic"
 	westroxbury "github.com/donghquinn/xlsx/westRoxbury"
 )
 
@@ -92,20 +93,20 @@ func callOpenFile(fileDirectory string) {
 		// 배열 첫번째는 칼럼 이름
 		totalValue, westTax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel = westroxbury.OpenFile(fileDirectory)
 
-		libraries.GetFloatMean(totalValue, "TOTAL VALUE")
+		statistic.GetFloatMean(totalValue, "TOTAL VALUE")
 
-		libraries.GetIntMean(westTax, "TAX")
-		libraries.GetIntMean(lotSqft, "LOT SQFT")
-		libraries.GetIntMean(yrBuilt, "YR BUILT")
-		libraries.GetIntMean(grossArea, "GROSS AREA")
-		libraries.GetIntMean(livingArea, "LIVING AREA")
-		libraries.GetFloatMean(floors, "Floors")
-		libraries.GetIntMean(rooms, "ROOMS")
-		libraries.GetIntMean(bedRooms, "BEDROOMS")
-		libraries.GetIntMean(fullBath, "FULL BATH")
-		libraries.GetIntMean(halfBath, "HALF BATh")
-		libraries.GetIntMean(kitchen, "KITCHEN")
-		libraries.GetIntMean(firePlace, "FIREPLACE")
+		statistic.GetIntMean(westTax, "TAX")
+		statistic.GetIntMean(lotSqft, "LOT SQFT")
+		statistic.GetIntMean(yrBuilt, "YR BUILT")
+		statistic.GetIntMean(grossArea, "GROSS AREA")
+		statistic.GetIntMean(livingArea, "LIVING AREA")
+		statistic.GetFloatMean(floors, "Floors")
+		statistic.GetIntMean(rooms, "ROOMS")
+		statistic.GetIntMean(bedRooms, "BEDROOMS")
+		statistic.GetIntMean(fullBath, "FULL BATH")
+		statistic.GetIntMean(halfBath, "HALF BATh")
+		statistic.GetIntMean(kitchen, "KITCHEN")
+		statistic.GetIntMean(firePlace, "FIREPLACE")
 
 		recentCount, oldCount, noneCount := libraries.RemodeledCount(remodel)
 
@@ -121,19 +122,19 @@ func callOpenFile(fileDirectory string) {
 	case "bostonHousing":
 		crime, zn, indus, chas, nox, rm, age, distance, radial, bostonTax, ptratio, lstat, medv = bostonhousing.OpenFile(fileDirectory)
 
-		libraries.GetFloatMean(crime, "CRIM")
-		libraries.GetFloatMean(zn, "ZN")
-		libraries.GetFloatMean(indus, "INDUS")
+		statistic.GetFloatMean(crime, "CRIM")
+		statistic.GetFloatMean(zn, "ZN")
+		statistic.GetFloatMean(indus, "INDUS")
 		libraries.ChasCount(chas)
-		libraries.GetFloatMean(nox, "NOX")
-		libraries.GetFloatMean(rm, "RM")
-		libraries.GetFloatMean(age, "AGE")
-		libraries.GetFloatMean(distance, "DIS")
-		libraries.GetIntMean(radial, "RAD")
-		libraries.GetIntMean(bostonTax, "TAX")
-		libraries.GetFloatMean(ptratio, "PTRATIO")
-		libraries.GetFloatMean(lstat, "LSTAT")
-		libraries.GetFloatMean(medv, "MEDV")
+		statistic.GetFloatMean(nox, "NOX")
+		statistic.GetFloatMean(rm, "RM")
+		statistic.GetFloatMean(age, "AGE")
+		statistic.GetFloatMean(distance, "DIS")
+		statistic.GetIntMean(radial, "RAD")
+		statistic.GetIntMean(bostonTax, "TAX")
+		statistic.GetFloatMean(ptratio, "PTRATIO")
+		statistic.GetFloatMean(lstat, "LSTAT")
+		statistic.GetFloatMean(medv, "MEDV")
 		// libraries.G
 
 		callGraph()
