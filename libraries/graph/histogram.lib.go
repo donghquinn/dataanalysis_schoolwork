@@ -11,6 +11,7 @@ import (
 
 func DrawHistogram(title string, data []string, xAxisName string, yDataName string, fileName string) error {
 	fmt.Printf("title: %s, xName: %s, yName: %s, fileName: %s ", title, xAxisName, yDataName, fileName)
+
 	plot := plot.New()
 
 	valueSlice := make(plotter.Values, len(data))
