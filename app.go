@@ -275,79 +275,163 @@ func callScatter() {
 }
 
 func seletFirstData() {
-	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-	_, selectDataSetErr := fmt.Scanln(&whichDataSet1)
+	if fileNameInput == "westRoxbury" {
+		fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+		_, selectDataSetErr := fmt.Scanln(&whichDataSet1)
 
-	if selectDataSetErr != nil {
-		fmt.Println("Select DataSet Input Error", selectDataSetErr)
-		bufio.NewReader(os.Stdin)
-		panic(selectDataSetErr.Error())
-	}
+		if selectDataSetErr != nil {
+			fmt.Println("Select DataSet Input Error", selectDataSetErr)
+			bufio.NewReader(os.Stdin)
+			panic(selectDataSetErr.Error())
+		}
 
-	switch whichDataSet1 {
-	case "totalValue":
-		usingDataSet1 = totalValue
-	case "tax":
-		usingDataSet1 = westTax
-	case "lotSqrt":
-		usingDataSet1 = lotSqft
-	case "yrBuilt":
-		usingDataSet1 = yrBuilt
-	case "grossArea":
-		usingDataSet1 = grossArea
-	case "livingArea":
-		usingDataSet1 = livingArea
-	case "floors":
-		usingDataSet1 = floors
-	case "fullBath":
-		usingDataSet1 = fullBath
-	case "halfBath":
-		usingDataSet1 = halfBath
-	case "kitchen":
-		usingDataSet1 = kitchen
-	case "firePlace":
-		usingDataSet1 = firePlace
-	case "remodel":
-		usingDataSet1 = remodel
+		switch whichDataSet1 {
+		case "totalValue":
+			usingDataSet1 = totalValue
+		case "tax":
+			usingDataSet1 = westTax
+		case "lotSqrt":
+			usingDataSet1 = lotSqft
+		case "yrBuilt":
+			usingDataSet1 = yrBuilt
+		case "grossArea":
+			usingDataSet1 = grossArea
+		case "livingArea":
+			usingDataSet1 = livingArea
+		case "floors":
+			usingDataSet1 = floors
+		case "fullBath":
+			usingDataSet1 = fullBath
+		case "halfBath":
+			usingDataSet1 = halfBath
+		case "kitchen":
+			usingDataSet1 = kitchen
+		case "firePlace":
+			usingDataSet1 = firePlace
+		case "remodel":
+			usingDataSet1 = remodel
+		}
+
+		fmt.Println("Selected DataSet: ", whichDataSet1)
+	} else if fileNameInput == "bostonHousing" {
+		fmt.Println("사용할 데이터 셋을 알려주세요: crim, zn, indus, chas, nox, rm, age, dist, rad, tax, ptratio, lstat, MEDV")
+		_, selectDataSetErr := fmt.Scanln(&whichDataSet1)
+
+		if selectDataSetErr != nil {
+			fmt.Println("Select DataSet Input Error", selectDataSetErr)
+			bufio.NewReader(os.Stdin)
+			panic(selectDataSetErr.Error())
+		}
+
+		switch whichDataSet1 {
+		case "crim":
+			usingDataSet1 = crime
+		case "zn":
+			usingDataSet1 = zn
+		case "indus":
+			usingDataSet1 = indus
+		case "chas":
+			usingDataSet1 = chas
+		case "nox":
+			usingDataSet1 = nox
+		case "rm":
+			usingDataSet1 = rm
+		case "age":
+			usingDataSet1 = age
+		case "dist":
+			usingDataSet1 = distance
+		case "rad":
+			usingDataSet1 = radial
+		case "tax":
+			usingDataSet1 = bostonTax
+		case "ptratio":
+			usingDataSet1 = ptratio
+		case "lstat":
+			usingDataSet1 = lstat
+		case "medv":
+			usingDataSet1 = medv
+		}
 	}
-	fmt.Println("Selected DataSet: ", whichDataSet1)
 }
 
 func seletSecondData() {
-	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-	_, selectDataSetErr := fmt.Scanln(&whichDataSet2)
+	if fileNameInput == "westRoxbury" {
+		fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+		_, selectDataSetErr := fmt.Scanln(&whichDataSet2)
 
-	if selectDataSetErr != nil {
-		fmt.Println("Select DataSet Input Error", selectDataSetErr)
-		bufio.NewReader(os.Stdin)
-		panic(selectDataSetErr.Error())
+		if selectDataSetErr != nil {
+			fmt.Println("Select DataSet Input Error", selectDataSetErr)
+			bufio.NewReader(os.Stdin)
+			panic(selectDataSetErr.Error())
+		}
+
+		switch whichDataSet2 {
+		case "totalValue":
+			usingDataSet2 = totalValue
+		case "tax":
+			usingDataSet2 = westTax
+		case "lotSqrt":
+			usingDataSet2 = lotSqft
+		case "yrBuilt":
+			usingDataSet2 = yrBuilt
+		case "grossArea":
+			usingDataSet2 = grossArea
+		case "livingArea":
+			usingDataSet2 = livingArea
+		case "floors":
+			usingDataSet2 = floors
+		case "fullBath":
+			usingDataSet2 = fullBath
+		case "halfBath":
+			usingDataSet2 = halfBath
+		case "kitchen":
+			usingDataSet2 = kitchen
+		case "firePlace":
+			usingDataSet2 = firePlace
+		case "remodel":
+			usingDataSet2 = remodel
+		}
+		fmt.Println("West Roxbury Selected DataSet: ", whichDataSet2)
 	}
 
-	switch whichDataSet2 {
-	case "totalValue":
-		usingDataSet2 = totalValue
-	case "tax":
-		usingDataSet2 = westTax
-	case "lotSqrt":
-		usingDataSet2 = lotSqft
-	case "yrBuilt":
-		usingDataSet2 = yrBuilt
-	case "grossArea":
-		usingDataSet2 = grossArea
-	case "livingArea":
-		usingDataSet2 = livingArea
-	case "floors":
-		usingDataSet2 = floors
-	case "fullBath":
-		usingDataSet2 = fullBath
-	case "halfBath":
-		usingDataSet2 = halfBath
-	case "kitchen":
-		usingDataSet2 = kitchen
-	case "firePlace":
-		usingDataSet2 = firePlace
-	case "remodel":
-		usingDataSet2 = remodel
+	if fileNameInput == "bostonHousing" {
+		fmt.Println("사용할 데이터 셋을 알려주세요: crim, zn, indus, chas, nox, rm, age, dist, rad, tax, ptratio, lstat, MEDV")
+		_, selectDataSetErr := fmt.Scanln(&whichDataSet2)
+
+		if selectDataSetErr != nil {
+			fmt.Println("Select DataSet Input Error", selectDataSetErr)
+			bufio.NewReader(os.Stdin)
+			panic(selectDataSetErr.Error())
+		}
+
+		switch whichDataSet2 {
+		case "crim":
+			usingDataSet1 = crime
+		case "zn":
+			usingDataSet1 = zn
+		case "indus":
+			usingDataSet1 = indus
+		case "chas":
+			usingDataSet1 = chas
+		case "nox":
+			usingDataSet1 = nox
+		case "rm":
+			usingDataSet1 = rm
+		case "age":
+			usingDataSet1 = age
+		case "dist":
+			usingDataSet1 = distance
+		case "rad":
+			usingDataSet1 = radial
+		case "tax":
+			usingDataSet1 = bostonTax
+		case "ptratio":
+			usingDataSet1 = ptratio
+		case "lstat":
+			usingDataSet1 = lstat
+		case "medv":
+			usingDataSet1 = medv
+		}
 	}
-	fmt.Println("Selected DataSet: ", whichDataSet2)
+	fmt.Println("BostonHousing Selected DataSet: ", whichDataSet2)
 }
