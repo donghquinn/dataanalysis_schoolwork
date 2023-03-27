@@ -42,6 +42,7 @@ var (
 	xData           string
 	yData           string
 	graphTitle      string
+	fileName        string
 )
 
 func main() {
@@ -144,7 +145,10 @@ func callGraph() {
 				panic(yAxisErr.Error())
 			}
 
-			histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData)
+			fmt.Println("생성할 파일의 이름을 알려주세요")
+			fmt.Scanln(&fileName)
+
+			histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData, fileName)
 
 			if histogramErr != nil {
 				fmt.Println("HistoGram Error", histogramErr)

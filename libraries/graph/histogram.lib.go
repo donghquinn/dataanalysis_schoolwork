@@ -9,7 +9,7 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
-func DrawHistogram(title string, data []string, xColumnName string, yColumnName string) error {
+func DrawHistogram(title string, data []string, xColumnName string, yColumnName string, fileName string) error {
 	plot := plot.New()
 
 	valueSlice := make(plotter.Values, len(data))
@@ -40,7 +40,7 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 
 	plot.Add(histogram)
 
-	plotErr := plot.Save(30*vg.Centimeter, 30*vg.Centimeter, "WestRoxbury.png")
+	plotErr := plot.Save(30*vg.Centimeter, 30*vg.Centimeter, fileName)
 
 	if plotErr != nil {
 		fmt.Println("Saving New Histogram Failed", plotErr)
