@@ -129,7 +129,7 @@ func callGraph() {
 			case "remodel":
 				usingDataSet = remodel
 			}
-			fmt.Println("Selected DataSet: ", usingDataSet)
+			fmt.Println("Selected DataSet: ", whichDataSet)
 
 			fmt.Println("사용할 x축의 이름을 알려주세요.")
 			_, xAxisErr := fmt.Scan(&xData)
