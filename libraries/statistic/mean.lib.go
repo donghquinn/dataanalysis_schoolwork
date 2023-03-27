@@ -25,7 +25,7 @@ func GetFloatMean(data []string, columnName string) {
 
 	mean := total / float64(len(data))
 
-	fmt.Printf("%s Data. Mean: %f, Max: %f\n ", columnName, mean, max)
+	fmt.Printf("%s Data. Average: %f, Max: %f\n ", columnName, mean, max)
 }
 
 func GetIntMean(data []string, columnName string) int {
@@ -48,7 +48,7 @@ func GetIntMean(data []string, columnName string) int {
 
 	mean := (total) / (len(data))
 
-	fmt.Printf("Column: %s, Mean: %d, Max: %d\n", columnName, mean, max)
+	fmt.Printf("Column: %s, Average: %d, Max: %d\n", columnName, mean, max)
 
 	return mean
 }
