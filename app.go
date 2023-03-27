@@ -122,7 +122,7 @@ func callOpenFile(fileDirectory string) {
 		crime, zn, indus, chas, nox, rm, age, distance, radial, bostonTax, ptratio, lstat, medv = bostonhousing.OpenFile(fileDirectory)
 
 		libraries.GetFloatMean(crime, "CRIM")
-		libraries.GetIntMean(zn, "ZN")
+		libraries.GetFloatMean(zn, "ZN")
 		libraries.GetFloatMean(indus, "INDUS")
 		libraries.ChasCount(chas)
 		libraries.GetFloatMean(nox, "NOX")
@@ -135,6 +135,8 @@ func callOpenFile(fileDirectory string) {
 		libraries.GetFloatMean(lstat, "LSTAT")
 		libraries.GetFloatMean(medv, "MEDV")
 		// libraries.G
+
+		callGraph()
 	}
 }
 
