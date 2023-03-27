@@ -15,7 +15,7 @@ func DrawHistogram(title string, data []string, xColumnName string, yColumnName 
 	valueSlice := make(plotter.Values, len(data))
 
 	for i := range valueSlice {
-		dataValue, err := strconv.ParseFloat(data[i], 64)
+		dataValue, err := strconv.ParseFloat(data[i+1], 64)
 
 		if err != nil {
 			fmt.Println("Failed To Parse Data Element into Float64", err)
