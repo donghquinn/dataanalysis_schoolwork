@@ -83,7 +83,7 @@ func callGraph() {
 
 		if graph == graphTypes.histogram {
 			fmt.Println("생성할 그래프의 제목을 알려주세요")
-			_, titleErr := fmt.Scanln(&graphTitle)
+			_, titleErr := fmt.Scan(&graphTitle)
 
 			if titleErr != nil {
 				fmt.Println("Invalid Input", titleErr)
@@ -127,8 +127,8 @@ func callGraph() {
 				usingDataSet = remodel
 			}
 
-			fmt.Println("사용할 x축 그래프 데이터를 알려주세요.")
-			_, xAxisErr := fmt.Scanln(&xData)
+			fmt.Println("사용할 x축의 이름을 알려주세요.")
+			_, xAxisErr := fmt.Scan(&xData)
 
 			if xAxisErr != nil {
 				fmt.Println("x Axis Data Failed", xAxisErr)
@@ -136,8 +136,8 @@ func callGraph() {
 				panic(xAxisErr.Error())
 			}
 
-			fmt.Println("사용할 y축 그래프 데이터를 알려주세요")
-			_, yAxisErr := fmt.Scanln(&yData)
+			fmt.Println("사용할 y축의 이름을 알려주세요")
+			_, yAxisErr := fmt.Scan(&yData)
 
 			if yAxisErr != nil {
 				fmt.Println("y Axis Data Failed", yAxisErr)
@@ -146,7 +146,13 @@ func callGraph() {
 			}
 
 			fmt.Println("생성할 파일의 이름을 알려주세요")
-			fmt.Scanln(&fileName)
+			_, fileNameErr := fmt.Scan(&fileName)
+
+			if fileNameErr != nil {
+				fmt.Println("Set fileName Failed", fileNameErr)
+				bufio.NewReader(os.Stdin)
+				panic(fileNameErr.Error())
+			}
 
 			histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData, fileName)
 
