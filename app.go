@@ -82,94 +82,187 @@ func callGraph() {
 		fmt.Println("어떤 종류의 그래프를 원하십니까: ", graphTypes)
 		fmt.Scanln(&graph)
 
-		if graph == graphTypes.histogram {
-			fmt.Println("생성할 그래프의 제목을 알려주세요")
-			_, titleErr := fmt.Scan(&graphTitle)
-
-			if titleErr != nil {
-				fmt.Println("Invalid Input", titleErr)
-				bufio.NewReader(os.Stdin)
-				panic(titleErr.Error())
-			}
-
-			fmt.Println("제목: ", graphTitle)
-
-			fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
-			_, selectDataSetErr := fmt.Scanln(&whichDataSet)
-
-			if selectDataSetErr != nil {
-				fmt.Println("Select DataSet Input Error", selectDataSetErr)
-				bufio.NewReader(os.Stdin)
-				panic(selectDataSetErr.Error())
-			}
-
-			switch whichDataSet {
-			case "totalValue":
-				usingDataSet = totalValue
-			case "tax":
-				usingDataSet = tax
-			case "lotSqrt":
-				usingDataSet = lotSqft
-			case "yrBuilt":
-				usingDataSet = yrBuilt
-			case "grossArea":
-				usingDataSet = grossArea
-			case "livingArea":
-				usingDataSet = livingArea
-			case "floors":
-				usingDataSet = floors
-			case "fullBath":
-				usingDataSet = fullBath
-			case "halfBath":
-				usingDataSet = halfBath
-			case "kitchen":
-				usingDataSet = kitchen
-			case "firePlace":
-				usingDataSet = firePlace
-			case "remodel":
-				usingDataSet = remodel
-			}
-			fmt.Println("Selected DataSet: ", whichDataSet)
-
-			fmt.Println("사용할 x축의 이름을 알려주세요.")
-			_, xAxisErr := fmt.Scan(&xData)
-
-			if xAxisErr != nil {
-				fmt.Println("x Axis Data Failed", xAxisErr)
-				bufio.NewReader(os.Stdin)
-				panic(xAxisErr.Error())
-			}
-
-			fmt.Println("사용할 y축의 이름을 알려주세요")
-			_, yAxisErr := fmt.Scan(&yData)
-
-			if yAxisErr != nil {
-				fmt.Println("y Data Failed", yAxisErr)
-				bufio.NewReader(os.Stdin)
-				panic(yAxisErr.Error())
-			}
-
-			fmt.Println("생성할 파일의 이름을 알려주세요")
-			_, fileNameErr := fmt.Scan(&fileName)
-
-			if fileNameErr != nil {
-				fmt.Println("Set fileName Failed", fileNameErr)
-				bufio.NewReader(os.Stdin)
-				panic(fileNameErr.Error())
-			}
-
-			histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData, fileName)
-
-			if histogramErr != nil {
-				fmt.Println("HistoGram Error", histogramErr)
-				bufio.NewReader(os.Stdin)
-				panic(histogramErr.Error())
-			}
-
-		} else if wantToDrawGraph == "n" {
-			fmt.Println("프로세스를 종료합니다.")
+		switch graph {
+		case graphTypes.histogram:
+			callHistogram()
+		case graphTypes.scatter:
+			callScatter()
 		}
+
+	} else if wantToDrawGraph == "n" {
+		fmt.Println("프로세스를 종료합니다.")
 	}
 
 	// fmt.Println("Please Input two DataSets you want to draw Histogram")
+}
+
+func callHistogram() {
+	fmt.Println("생성할 그래프의 제목을 알려주세요")
+	_, titleErr := fmt.Scan(&graphTitle)
+
+	if titleErr != nil {
+		fmt.Println("Invalid Input", titleErr)
+		bufio.NewReader(os.Stdin)
+		panic(titleErr.Error())
+	}
+
+	fmt.Println("제목: ", graphTitle)
+
+	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+	_, selectDataSetErr := fmt.Scanln(&whichDataSet)
+
+	if selectDataSetErr != nil {
+		fmt.Println("Select DataSet Input Error", selectDataSetErr)
+		bufio.NewReader(os.Stdin)
+		panic(selectDataSetErr.Error())
+	}
+
+	switch whichDataSet {
+	case "totalValue":
+		usingDataSet = totalValue
+	case "tax":
+		usingDataSet = tax
+	case "lotSqrt":
+		usingDataSet = lotSqft
+	case "yrBuilt":
+		usingDataSet = yrBuilt
+	case "grossArea":
+		usingDataSet = grossArea
+	case "livingArea":
+		usingDataSet = livingArea
+	case "floors":
+		usingDataSet = floors
+	case "fullBath":
+		usingDataSet = fullBath
+	case "halfBath":
+		usingDataSet = halfBath
+	case "kitchen":
+		usingDataSet = kitchen
+	case "firePlace":
+		usingDataSet = firePlace
+	case "remodel":
+		usingDataSet = remodel
+	}
+
+	fmt.Println("Selected DataSet: ", whichDataSet)
+
+	fmt.Println("사용할 x축의 이름을 알려주세요.")
+	_, xAxisErr := fmt.Scan(&xData)
+
+	if xAxisErr != nil {
+		fmt.Println("x Axis Data Failed", xAxisErr)
+		bufio.NewReader(os.Stdin)
+		panic(xAxisErr.Error())
+	}
+
+	fmt.Println("사용할 y축의 이름을 알려주세요")
+	_, yAxisErr := fmt.Scan(&yData)
+
+	if yAxisErr != nil {
+		fmt.Println("y Data Failed", yAxisErr)
+		bufio.NewReader(os.Stdin)
+		panic(yAxisErr.Error())
+	}
+
+	fmt.Println("생성할 파일의 이름을 알려주세요")
+	_, fileNameErr := fmt.Scan(&fileName)
+
+	if fileNameErr != nil {
+		fmt.Println("Set fileName Failed", fileNameErr)
+		bufio.NewReader(os.Stdin)
+		panic(fileNameErr.Error())
+	}
+
+	histogramErr := drawGraph.DrawHistogram(graphTitle, usingDataSet, xData, yData, fileName)
+
+	if histogramErr != nil {
+		fmt.Println("HistoGram Error", histogramErr)
+		bufio.NewReader(os.Stdin)
+		panic(histogramErr.Error())
+	}
+}
+
+func callScatter() {
+	fmt.Println("생성할 그래프의 제목을 알려주세요")
+	_, titleErr := fmt.Scan(&graphTitle)
+
+	if titleErr != nil {
+		fmt.Println("Invalid Input", titleErr)
+		bufio.NewReader(os.Stdin)
+		panic(titleErr.Error())
+	}
+
+	fmt.Println("제목: ", graphTitle)
+
+	fmt.Println("사용할 데이터 셋을 알려주세요: totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel")
+	_, selectDataSetErr := fmt.Scanln(&whichDataSet)
+
+	if selectDataSetErr != nil {
+		fmt.Println("Select DataSet Input Error", selectDataSetErr)
+		bufio.NewReader(os.Stdin)
+		panic(selectDataSetErr.Error())
+	}
+
+	switch whichDataSet {
+	case "totalValue":
+		usingDataSet = totalValue
+	case "tax":
+		usingDataSet = tax
+	case "lotSqrt":
+		usingDataSet = lotSqft
+	case "yrBuilt":
+		usingDataSet = yrBuilt
+	case "grossArea":
+		usingDataSet = grossArea
+	case "livingArea":
+		usingDataSet = livingArea
+	case "floors":
+		usingDataSet = floors
+	case "fullBath":
+		usingDataSet = fullBath
+	case "halfBath":
+		usingDataSet = halfBath
+	case "kitchen":
+		usingDataSet = kitchen
+	case "firePlace":
+		usingDataSet = firePlace
+	case "remodel":
+		usingDataSet = remodel
+	}
+	fmt.Println("Selected DataSet: ", whichDataSet)
+
+	fmt.Println("사용할 x축의 이름을 알려주세요.")
+	_, xAxisErr := fmt.Scan(&xData)
+
+	if xAxisErr != nil {
+		fmt.Println("x Axis Data Failed", xAxisErr)
+		bufio.NewReader(os.Stdin)
+		panic(xAxisErr.Error())
+	}
+
+	fmt.Println("사용할 y축의 이름을 알려주세요")
+	_, yAxisErr := fmt.Scan(&yData)
+
+	if yAxisErr != nil {
+		fmt.Println("y Data Failed", yAxisErr)
+		bufio.NewReader(os.Stdin)
+		panic(yAxisErr.Error())
+	}
+
+	fmt.Println("생성할 파일의 이름을 알려주세요")
+	_, fileNameErr := fmt.Scan(&fileName)
+
+	if fileNameErr != nil {
+		fmt.Println("Set fileName Failed", fileNameErr)
+		bufio.NewReader(os.Stdin)
+		panic(fileNameErr.Error())
+	}
+
+	histogramErr := drawGraph.DrawScatter(graphTitle, usingDataSet, xData, yData, fileName)
+
+	if histogramErr != nil {
+		fmt.Println("Scatter Error", histogramErr)
+		bufio.NewReader(os.Stdin)
+		panic(histogramErr.Error())
+	}
 }
