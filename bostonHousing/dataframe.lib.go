@@ -70,18 +70,18 @@ func generateDataFrame(rows *excelize.Rows) {
 		}
 
 		crime = append(crime, columns[0])
-		tax = append(tax, columns[1])
-		zn = append(zn, columns[2])
-		indus = append(indus, columns[3])
-		chas = append(chas, columns[4])
-		rm = append(rm, columns[5])
+		zn = append(zn, columns[1])
+		indus = append(indus, columns[2])
+		chas = append(chas, columns[3])
+		rm = append(rm, columns[4])
 		nox = append(nox, columns[5])
 		age = append(age, columns[6])
 		distance = append(distance, columns[7])
-		radial = append(radial, columns[8])
-		ptratio = append(ptratio, columns[9])
-		lstat = append(lstat, columns[10])
-		medv = append(medv, columns[11])
+		tax = append(tax, columns[8])
+		radial = append(radial, columns[9])
+		ptratio = append(ptratio, columns[10])
+		lstat = append(lstat, columns[11])
+		medv = append(medv, columns[12])
 	}
 
 	defer rows.Close()
