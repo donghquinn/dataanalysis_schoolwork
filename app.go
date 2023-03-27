@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/donghquinn/xlsx/libraries"
+	drawGraph "github.com/donghquinn/xlsx/libraries/graph"
 	westroxbury "github.com/donghquinn/xlsx/westRoxbury"
 )
 
@@ -31,6 +32,9 @@ var (
 
 	wantToDrawGraph string
 	graph           string
+	xData           string
+	yData           string
+	graphTitle      string
 )
 
 func main() {
@@ -70,7 +74,16 @@ func callGraph() {
 		fmt.Scanln(&graph)
 
 		if graph == graphTypes.histogram {
-			fmt.Println("a")
+			fmt.Println("생성할 그래프의 제목을 알려주세요")
+			fmt.Scanln(&graphTitle)
+
+			fmt.Println("사용할 x축 그래프 데이터를 알려주세요.")
+			fmt.Scanln(&xData)
+
+			fmt.Println("사용할 y축 그래프 데이터를 알려주세요")
+			fmt.Scanln(&yData)
+
+			drawGraph.DrawHistogram("Data", totalValue, "Total Value", "Y")
 		}
 	}
 
