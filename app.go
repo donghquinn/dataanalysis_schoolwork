@@ -16,9 +16,6 @@ type graphStyles struct {
 	scatter   string
 }
 
-// type dataSets struct {
-// }
-
 var (
 	totalValue []string
 	tax        []string
