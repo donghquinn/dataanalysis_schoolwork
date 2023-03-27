@@ -28,10 +28,18 @@ func DrawHistogram(title string, data []string, xAxisName string, yDataName stri
 	}
 
 	plot.Title.Text = title
+	plot.Title.Padding = 5
+	// plot.Title.TextStyle.Font.Style = "Regular"
 	plot.X.Label.Text = xAxisName
 	plot.Y.Label.Text = yDataName
+	plot.X.Label.Padding = 5
+	plot.Y.Label.Padding = 5
 
-	histogram, histoErr := plotter.NewHist(valueSlice, 10)
+	plot.Title.TextStyle.Font.Size = 30
+	plot.X.Label.TextStyle.Font.Size = 20
+	plot.Y.Label.TextStyle.Font.Size = 20
+
+	histogram, histoErr := plotter.NewHist(valueSlice, 20)
 
 	if histoErr != nil {
 		fmt.Println("Creating New Histogram Error", histoErr)
@@ -41,7 +49,7 @@ func DrawHistogram(title string, data []string, xAxisName string, yDataName stri
 
 	plot.Add(histogram)
 
-	plotErr := plot.Save(30*vg.Centimeter, 30*vg.Centimeter, fileName)
+	plotErr := plot.Save(40*vg.Centimeter, 40*vg.Centimeter, fileName+"png")
 
 	if plotErr != nil {
 		fmt.Println("Saving New Histogram Failed", plotErr)
