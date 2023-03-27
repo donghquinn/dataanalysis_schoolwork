@@ -2,7 +2,6 @@ package statistic
 
 import (
 	"fmt"
-	"math"
 	"sort"
 	"strconv"
 )
@@ -32,19 +31,19 @@ func GetMedian(data []string, dataName string) float64 {
 
 	middleNumber := len(convertedDataArray) / 2
 
-	if totalDataNumber%2 != 0 {
+	if len(convertedDataArray)%2 != 0 {
 		fmt.Println("Median Index: ", middleNumber)
 
 		median = convertedDataArray[middleNumber]
 
 		return median
 	} else {
-		fmt.Println("First Median Index: ", math.Ceil(float64(middleNumber)/2))
-		first := convertedDataArray[totalDataNumber/2]
+		fmt.Println("First Median Index: ", middleNumber)
+		first := convertedDataArray[middleNumber]
 		fmt.Println("First Median Number: ", first)
 
-		fmt.Println("Second Median Index: ", totalDataNumber/2+1)
-		second := convertedDataArray[totalDataNumber/2+1]
+		fmt.Println("Second Median Index: ", middleNumber+1)
+		second := convertedDataArray[middleNumber+1]
 		fmt.Println("Second Median Number: ", second)
 
 		median = (first + second) / 2
