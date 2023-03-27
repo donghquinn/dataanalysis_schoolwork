@@ -8,6 +8,7 @@ import (
 func main() {
 	fileName := "/Users/kimdonghyun/Desktop/schoolWork/23-1/비즈니스 애널리틱스/DMBA-3rd-ed-datasets-xlsx_2/West Roxbury.xlsx"
 
+	// 배열 첫번째는 칼럼 이름
 	totalValue, tax, lotSqft, yrBuilt, grossArea, livingArea, floors, rooms, bedRooms, fullBath, halfBath, kitchen, firePlace, remodel := westroxbury.OpenFile(fileName)
 
 	libraries.GetFloatMean(totalValue, "TOTAL VALUE")
