@@ -86,6 +86,8 @@ func callGraph() {
 			callHistogram()
 		case graphTypes.scatter:
 			callScatter()
+		default:
+			fmt.Println("No Graph Is matching.")
 		}
 
 	} else if wantToDrawGraph == "n" {
