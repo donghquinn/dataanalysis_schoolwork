@@ -8,17 +8,29 @@ import (
 func GetFloatMean(data []string, columnName string) {
 	total := 0.0
 	max := 0.0
+	// min := 0.0
+
+	// tmpArray := make([]float64, 2)
 
 	for i := 1; i < len(data); i += 1 {
 		number, err := strconv.ParseFloat(data[i], 64)
 
+		// tmpArray = append(tmpArray, number)
+
 		if err != nil {
-			fmt.Println("Conver error: ", err.Error())
+			fmt.Println("Convert error: ", err.Error())
 		}
 
 		if max < number {
 			max = number
 		}
+
+		// if i >= 2 {
+		// 	fmt.Printf("tmpArray: %v, number: %f\n", tmpArray, number)
+		// 	decideMin := math.Min(tmpArray[0], number)
+
+		// 	min = decideMin
+		// }
 
 		total += number
 	}
@@ -27,9 +39,7 @@ func GetFloatMean(data []string, columnName string) {
 
 	median := GetMedian(data, columnName)
 
-	fmt.Printf("Column: %s, Average: %f, Max: %f, Medival: %f \n", columnName, mean, max, median)
-
-	// fmt.Printf("%s Data. Average: %f, Max: %f\n ", columnName, mean, max)
+	fmt.Printf("Column: %s, Average: %f, Max: %f, Median: %f \n", columnName, mean, max, median)
 }
 
 func GetIntMean(data []string, columnName string) {
@@ -54,5 +64,4 @@ func GetIntMean(data []string, columnName string) {
 	median := GetMedian(data, columnName)
 
 	fmt.Printf("Column: %s, Average: %d, Max: %d, Median: %f \n", columnName, mean, max, median)
-
 }

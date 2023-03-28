@@ -10,10 +10,12 @@ var (
 	median float64
 )
 
+// 중앙값
 func GetMedian(data []string, dataName string) float64 {
-	totalDataNumber := len(data) - 1
+	// column 열은 빼고
+	totalDataNumber := len(data)
 
-	fmt.Println("Total Data Number: ", totalDataNumber)
+	// fmt.Println("Total Data Number: ", totalDataNumber)
 
 	convertedDataArray := make([]float64, totalDataNumber)
 

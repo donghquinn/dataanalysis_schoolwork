@@ -82,7 +82,7 @@ func main() {
 func decideDataSet(fileName string) string {
 	founded := fileNameArray[fileName]
 
-	fmt.Printf("Founded %s", founded)
+	// fmt.Printf("Founded %s", founded)
 
 	return founded
 }
